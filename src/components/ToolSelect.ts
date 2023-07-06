@@ -1,10 +1,11 @@
 import elt from "../utils/createElement";
+import { EditorConfig, EditorState, UIComponent } from "../types";
 
 class ToolSelect implements UIComponent {
   public select: HTMLSelectElement;
   public dom: HTMLElement;
 
-  constructor(state: EditorState, { tools, dispatch }) {
+  constructor(state: EditorState, { tools, dispatch }: EditorConfig) {
     this.select = elt(
       "select",
       {

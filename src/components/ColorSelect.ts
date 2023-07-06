@@ -1,9 +1,13 @@
 import elt from "../utils/createElement";
+import { UIComponent, EditorState } from "../types";
 
 class ColorSelect implements UIComponent {
   public input: HTMLInputElement;
   public dom: HTMLElement;
-  constructor(state: EditorState, { dispatch }) {
+  constructor(
+    state: EditorState,
+    { dispatch }: { dispatch: (...args: any[]) => void }
+  ) {
     this.input = elt("input", {
       type: "color",
       value: state.color,

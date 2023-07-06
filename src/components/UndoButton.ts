@@ -1,8 +1,9 @@
 import elt from "../utils/createElement";
+import { EditorConfig, EditorState, UIComponent } from "../types";
 
 class UndoButton implements UIComponent {
   public dom: HTMLButtonElement;
-  constructor(state, { dispatch }) {
+  constructor(state: EditorState, { dispatch }: EditorConfig) {
     this.dom = <HTMLButtonElement>elt(
       "button",
       {

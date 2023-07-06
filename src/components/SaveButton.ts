@@ -1,10 +1,13 @@
 import elt from "../utils/createElement";
+import { EditorState, UIComponent } from "../types";
+import Picture from "../models/Picture";
+import { drawPicture } from "../utils/drawHelpers";
 
 class SaveButton implements UIComponent {
   public picture: Picture;
   public dom: HTMLElement;
 
-  constructor(state) {
+  constructor(state: EditorState) {
     this.picture = state.picture;
     this.dom = elt(
       "button",
@@ -25,7 +28,7 @@ class SaveButton implements UIComponent {
     link.click();
     link.remove();
   }
-  syncState(state) {
+  syncState(state: EditorState) {
     this.picture = state.picture;
   }
 }

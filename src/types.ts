@@ -23,7 +23,7 @@ export interface EditorState {
 export interface EditorConfig {
   tools: any;
   controls: (typeof UIComponent)[];
-  dispatch: any;
+  dispatch: (stat: any, action?: any) => void;
 }
 
 export interface Position {

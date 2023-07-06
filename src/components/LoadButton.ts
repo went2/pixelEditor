@@ -1,8 +1,10 @@
 import elt from "../utils/createElement";
+import { EditorConfig, UIComponent } from "../types";
+import { startLoad } from "../utils/fileLoader";
 
 class LoadButton implements UIComponent {
   public dom: HTMLElement;
-  constructor(_, { dispatch }) {
+  constructor(_: any, { dispatch }: EditorConfig) {
     this.dom = elt(
       "button",
       {
