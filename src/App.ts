@@ -7,7 +7,11 @@ import {
   PixelEditor,
 } from "./components";
 
+import { draw, fill, rectangle, pick } from "./utils/drawHelpers";
+
 import { EditorState } from "./types";
+import Picture from "./models/Picture";
+import { historyUpdateState } from "./models/reducers";
 
 const initialState: EditorState = {
   tool: "draw",
@@ -41,7 +45,7 @@ function startPixelEditor({
   const app = new PixelEditor(state, {
     tools,
     controls,
-    dispatch(action) {
+    dispatch(action: { undo: boolean; picture: Picture }) {
       state = historyUpdateState(state, action);
       app.syncState(state);
     },

@@ -1,3 +1,5 @@
+import Picture from "./models/Picture";
+
 // UIs are modeled as components.
 // Each component creates corresponding HTML elements
 // and expose sysnState() to outside world
@@ -22,13 +24,6 @@ export interface EditorConfig {
   tools: any;
   controls: (typeof UIComponent)[];
   dispatch: any;
-}
-
-// store coordinates of color
-export class Pixel {
-  public x: number;
-  public y: number;
-  public color: string; // like "#000000"
 }
 
 export interface Position {

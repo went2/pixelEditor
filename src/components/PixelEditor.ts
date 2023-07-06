@@ -1,5 +1,6 @@
 import elt from "../utils/createElement";
 import PictureCanvas from "./PictureCanvas";
+import { UIComponent, EditorState, EditorConfig, Position } from "../types";
 
 class PixelEditor implements UIComponent {
   public state: EditorState;
@@ -11,10 +12,10 @@ class PixelEditor implements UIComponent {
     const { tools, controls, dispatch } = config;
     this.state = state;
 
-    this.canvas = new PictureCanvas(state.picture, (pos) => {
+    this.canvas = new PictureCanvas(state.picture, (pos: Position) => {
       const tool = tools[this.state.tool];
       const onMove = tool(pos, this.state, dispatch);
-      if (onMove) return (pos) => onMove(pos, this.state);
+      if (onMove) return (pos: Position) => onMove(pos, this.state);
     });
 
     this.controls = controls.map((Control) => new Control(state, config));

@@ -1,5 +1,7 @@
 import elt from "../utils/createElement";
 import { Position } from "../types";
+import Picture from "../models/Picture";
+import { drawPicture } from "../utils/drawHelpers";
 
 // A component holds canvas that only knows current picture
 // It adds mouse and touch events handlers when constructs
@@ -18,6 +20,7 @@ class PictureCanvas {
       ontouchstart: (event: TouchEvent) => this.touch(event, pointerDown),
     }) as HTMLCanvasElement;
     if (scale) this.scale = scale;
+    this.picture = picture;
     this.syncState(picture);
   }
 
