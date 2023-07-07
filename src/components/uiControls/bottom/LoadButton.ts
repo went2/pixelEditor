@@ -1,6 +1,6 @@
-import elt from "../utils/createElement";
-import { EditorConfig, UIComponent } from "../types";
-import { startLoad } from "../utils/fileLoader";
+import elt from "../../../utils/createElement";
+import { EditorConfig, UIComponent } from "../../../types";
+import { startLoad } from "../../../utils/fileLoader";
 
 class LoadButton implements UIComponent {
   public dom: HTMLElement;

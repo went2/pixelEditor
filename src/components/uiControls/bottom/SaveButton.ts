@@ -1,7 +1,7 @@
-import elt from "../utils/createElement";
-import { EditorState, UIComponent } from "../types";
-import Picture from "../models/Picture";
-import { drawPicture } from "../utils/drawHelpers";
+import elt from "@/utils/createElement";
+import { EditorState, UIComponent } from "@/types";
+import Picture from "@/models/picture";
+import { drawPicture } from "@/utils/drawHelpers";
 
 class SaveButton implements UIComponent {
   public picture: Picture;

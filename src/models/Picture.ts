@@ -9,6 +9,7 @@ class Picture {
     this.height = height;
     this.pixels = pixels;
   }
+
   public static empty(width: number, height: number, color: string) {
     const pixels = new Array(width * height).fill(color);
     return new Picture(width, height, pixels);

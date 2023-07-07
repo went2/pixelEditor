@@ -1,21 +1,18 @@
-import Picture, { Pixel } from "../models/Picture";
+import Picture, { Pixel } from "../models/picture";
 import { EditorState, Position } from "../types";
 import elt from "./createElement";
 
-// draw Picture to canvas
 export function drawPicture(
   picture: Picture,
   canvas: HTMLCanvasElement,
   scale: number
 ) {
-  canvas.width = picture.width * scale;
-  canvas.height = picture.height * scale;
-  let cx = canvas.getContext("2d");
+  let cx = <CanvasRenderingContext2D>canvas.getContext("2d");
 
   for (let y = 0; y < picture.height; y++) {
     for (let x = 0; x < picture.width; x++) {
-      cx!.fillStyle = picture.getPixel(x, y);
-      cx!.fillRect(x * scale, y * scale, scale, scale);
+      cx.fillStyle = picture.getPixel(x, y);
+      cx.fillRect(x * scale, y * scale, scale, scale);
     }
   }
 }

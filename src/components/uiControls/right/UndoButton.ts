@@ -1,5 +1,5 @@
-import elt from "../utils/createElement";
-import { EditorConfig, EditorState, UIComponent } from "../types";
+import elt from "@/utils/createElement";
+import { EditorConfig, EditorState, UIComponent } from "@/types";
 
 class UndoButton implements UIComponent {
   public dom: HTMLButtonElement;

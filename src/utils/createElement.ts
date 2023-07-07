@@ -1,5 +1,5 @@
 // dom building
-function elt(
+export default function elt(
   type: string,
   props?: any,
   ...children: (HTMLElement | string)[]
@@ -12,5 +12,3 @@ function elt(
   }
   return dom;
 }
-
-export default elt;

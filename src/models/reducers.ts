@@ -1,5 +1,5 @@
 import { EditorState } from "../types";
-import Picture from "./Picture";
+import Picture from "./picture";
 
 // undo state reducer
 export function historyUpdateState(

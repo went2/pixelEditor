@@ -1,5 +1,5 @@
-import elt from "../utils/createElement";
-import { UIComponent, EditorState } from "../types";
+import elt from "../../../utils/createElement";
+import { UIComponent, EditorState } from "../../../types";
 
 class ColorSelect implements UIComponent {
   public input: HTMLInputElement;
@@ -13,6 +13,7 @@ class ColorSelect implements UIComponent {
       value: state.color,
       onchange: () => dispatch({ color: this.input.value }),
     }) as HTMLInputElement;
+
     this.dom = elt("label", null, "🎨 Color: ", this.input);
   }
   public syncState(state: EditorState) {
