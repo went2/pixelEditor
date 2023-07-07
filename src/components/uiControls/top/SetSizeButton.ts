@@ -13,7 +13,7 @@ class SetSizeButton implements UIComponent {
         onclick: () => dispatch({ size: Number(this.dom.textContent) }),
         className: this.size === state.currentSize ? "selected" : "",
       },
-      size.toString()
+      `size.toString() X size.toString()`
     ) as HTMLButtonElement;
   }
 

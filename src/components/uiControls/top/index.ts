@@ -6,9 +6,10 @@ import elt from "@/utils/createElement";
 export default class SetSizeButtons implements UIComponent {
   private sizes = [16, 32, 64, 128];
   public dom: HTMLElement;
+  private controls: UIComponent[];
 
   constructor(state: EditorState, config: EditorConfig) {
-    const sizeButtons: UIComponent[] = this.sizes.map(
+    this.controls = this.sizes.map(
       (size) => new SetSizeButton(state, config, size)
     );
 
@@ -17,9 +18,13 @@ export default class SetSizeButtons implements UIComponent {
       {
         className: "top-btns-container",
       },
-      ...sizeButtons.map((btn) => btn.dom)
+      ...this.controls.map((btn) => btn.dom)
     );
   }
 
-  public syncState() {}
+  public syncState(state: EditorState): void {
+    for (let ctrl of this.controls) {
+      ctrl.syncState(state);
+    }
+  }
 }
