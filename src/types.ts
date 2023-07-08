@@ -1,8 +1,9 @@
 import Picture from "./models/picture";
 
 // UIs are modeled as components.
-// Each component creates corresponding HTML elements
-// and expose sysnState() to outside world
+// Each component builds corresponding HTML elements
+// UI change => dispatch actions => generate new state => sysnState() new UI
+// syncState does not generate new state. It receives new state and update UI
 export interface UIComponent {
   dom: HTMLElement;
   syncState(state: EditorState): void;
@@ -26,16 +27,12 @@ export interface EditorState {
 
 interface BaseControls {
   [key: string]: typeof UIComponent;
-  // LeftControls: typeof UIComponent;
-  // TopControls: typeof UIComponent;
-  // RightControls: typeof UIComponent;
-  // BottomControls: typeof UIComponent;
 }
 
 export interface EditorConfig {
   tools: any;
   controls: BaseControls;
-  dispatch: (state: any, action?: any) => void;
+  dispatch: (action: ActionObj) => void;
 }
 
 export interface Position {
@@ -43,8 +40,16 @@ export interface Position {
   y: number;
 }
 
-export interface ActionType {
-  undo: boolean;
-  picture: Picture;
-  clear: boolean;
+interface ActionPayload {
+  undo?: boolean;
+  picture?: Picture;
+  clear?: boolean;
+  currentSize?: number;
+  color?: string;
+  tool?: string;
+}
+
+export interface ActionObj {
+  type: "set-size" | "select-tool" | "clear" | "undo" | "draw";
+  payload?: ActionPayload;
 }

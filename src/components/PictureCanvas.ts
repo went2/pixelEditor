@@ -11,14 +11,14 @@ class PictureCanvas {
   public picture: Picture;
   private WIDTH = 384;
   private HEIGHT = 384;
-  private _size = 64;
+  private currentSize;
 
   constructor(
     picture: Picture,
-    pointerDown: (...args: any[]) => void,
-    size?: number
+    pointerDown: (pos: Position) => void,
+    currentSize: number
   ) {
-    if (size) this._size = size;
+    this.currentSize = currentSize;
     this.picture = picture;
 
     this.background = elt("canvas", {
@@ -27,7 +27,7 @@ class PictureCanvas {
       className: "canvas",
     }) as HTMLCanvasElement;
 
-    this.drawGrid(0, 0, this.WIDTH, this.HEIGHT, this.WIDTH / this._size);
+    this.drawGrid(0, 0, this.WIDTH, this.HEIGHT, this.WIDTH / currentSize);
     this.canvas = elt("canvas", {
       onmousedown: (event: MouseEvent) => this.mouse(event, pointerDown),
       ontouchstart: (event: TouchEvent) => this.touch(event, pointerDown),
@@ -45,14 +45,7 @@ class PictureCanvas {
       this.canvas
     );
 
-    this.syncState(picture);
-  }
-
-  public syncState(picture: Picture) {
-    if (this.picture == picture) return;
-
-    this.picture = picture;
-    drawPicture(this.picture, this.canvas, this.scale);
+    this.syncState(picture, currentSize);
   }
 
   public mouse(downEvent: MouseEvent, onDown: (...args: any[]) => any) {
@@ -95,12 +88,8 @@ class PictureCanvas {
     this.canvas.addEventListener("touchend", end);
   }
 
-  public get size() {
-    return this._size;
-  }
-
   public get scale() {
-    return this.WIDTH / this._size;
+    return this.WIDTH / this.currentSize;
   }
 
   private pointerPosition(
@@ -140,6 +129,24 @@ class PictureCanvas {
     ctx.strokeStyle = "#00000035";
     ctx.stroke();
     ctx.closePath();
+  }
+
+  public syncState(picture: Picture, currentSize: number) {
+    // generate a new picture for new size
+    if (this.currentSize != currentSize) {
+      this.currentSize = currentSize;
+      this.picture = picture;
+      this.drawGrid(0, 0, this.WIDTH, this.HEIGHT, this.WIDTH / currentSize);
+      drawPicture(this.picture, this.canvas, this.scale);
+      return;
+    }
+    if (this.picture === picture) {
+      return;
+    }
+
+    // It is picture update
+    this.picture = picture;
+    drawPicture(this.picture, this.canvas, this.scale);
   }
 }
 

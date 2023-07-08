@@ -8,7 +8,7 @@ class ClearButton implements UIComponent {
     this.dom = elt(
       "button",
       {
-        onclick: () => dispatch({ clear: true }),
+        onclick: () => dispatch({ type: "clear" }),
         disabled: state.done.length == 0,
       },
       "⎚ Clear"

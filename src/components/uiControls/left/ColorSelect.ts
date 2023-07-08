@@ -1,17 +1,20 @@
-import elt from "../../../utils/createElement";
-import { UIComponent, EditorState } from "../../../types";
+import elt from "@/utils/createElement";
+import { UIComponent, EditorState, EditorConfig, ActionObj } from "@/types";
 
 class ColorSelect implements UIComponent {
   public input: HTMLInputElement;
   public dom: HTMLElement;
-  constructor(
-    state: EditorState,
-    { dispatch }: { dispatch: (...args: any[]) => void }
-  ) {
+  constructor(state: EditorState, { dispatch }: EditorConfig) {
     this.input = elt("input", {
       type: "color",
       value: state.color,
-      onchange: () => dispatch({ color: this.input.value }),
+      onchange: () =>
+        dispatch({
+          type: "select-tool",
+          payload: {
+            color: this.input.value,
+          },
+        }),
     }) as HTMLInputElement;
 
     this.dom = elt("label", null, "🎨 Color: ", this.input);

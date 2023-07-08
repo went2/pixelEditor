@@ -1,5 +1,5 @@
 import Picture, { Pixel } from "../models/picture";
-import { EditorState, Position } from "../types";
+import { ActionObj, EditorState, Position } from "../types";
 import elt from "./createElement";
 
 export function drawPicture(
@@ -8,6 +8,7 @@ export function drawPicture(
   scale: number
 ) {
   let cx = <CanvasRenderingContext2D>canvas.getContext("2d");
+  cx.clearRect(0, 0, picture.height * scale, picture.height * scale);
 
   for (let y = 0; y < picture.height; y++) {
     for (let x = 0; x < picture.width; x++) {
@@ -39,11 +40,16 @@ export function pictureFromImage(image: HTMLImageElement): Picture {
 export function draw(
   pos: Position,
   state: EditorState,
-  dispatch: (...args: any[]) => void
+  dispatch: (action: ActionObj) => void
 ): (...args: any[]) => void {
   function drawPixel({ x, y }: Position, state: EditorState) {
     const drawn = { x, y, color: state.color };
-    dispatch({ picture: state.picture.draw([drawn]) });
+    dispatch({
+      type: "draw",
+      payload: {
+        picture: state.picture.draw([drawn]),
+      },
+    });
   }
   drawPixel(pos, state);
   return drawPixel;

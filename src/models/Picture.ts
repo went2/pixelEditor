@@ -10,8 +10,9 @@ class Picture {
     this.pixels = pixels;
   }
 
-  public static empty(width: number, height: number, color: string) {
-    const pixels = new Array(width * height).fill(color);
+  public static empty(width: number, height: number, color?: string) {
+    const backgroundColor = color ? color : "#f0f0f000";
+    const pixels = new Array(width * height).fill(backgroundColor);
     return new Picture(width, height, pixels);
   }
 

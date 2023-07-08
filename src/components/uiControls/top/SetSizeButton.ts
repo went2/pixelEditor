@@ -1,4 +1,5 @@
-import { EditorConfig, EditorState, UIComponent } from "@/types";
+import Picture from "@/models/picture";
+import { ActionObj, EditorConfig, EditorState, UIComponent } from "@/types";
 import elt from "@/utils/createElement";
 
 class SetSizeButton implements UIComponent {
@@ -7,17 +8,27 @@ class SetSizeButton implements UIComponent {
 
   constructor(state: EditorState, { dispatch }: EditorConfig, size: number) {
     this.size = size;
+
+    const action: ActionObj = {
+      type: "set-size",
+      payload: {
+        currentSize: this.size,
+      },
+    };
+
     this.dom = elt(
       "button",
       {
-        onclick: () => dispatch({ size: Number(this.dom.textContent) }),
+        onclick: () => dispatch(action),
         className: this.size === state.currentSize ? "selected" : "",
       },
-      `size.toString() X size.toString()`
+      `${size.toString()} X ${size.toString()}`
     ) as HTMLButtonElement;
   }
 
-  public syncState(): void {}
+  public syncState(state: EditorState): void {
+    this.dom.className = this.size === state.currentSize ? "selected" : "";
+  }
 }
 
 export default SetSizeButton;

@@ -1,4 +1,4 @@
-import { SaveButton, LoadButton, UndoButton, PixelEditor } from "./components";
+import { PixelEditor } from "./components";
 
 import SetSizeButtons from "./components/uiControls/top";
 import ToolBar from "./components/uiControls/left";
@@ -7,17 +7,17 @@ import BottomControls from "./components/uiControls/bottom";
 
 import { draw, fill, rectangle, pick } from "./utils/drawHelpers";
 
-import { EditorState, ActionType } from "./types";
+import { EditorState, ActionObj } from "./types";
 import Picture from "./models/picture";
-import { historyUpdateState } from "./models/reducers";
+import { historyUpdateState } from "./models/reducer";
 
 const initialState: EditorState = {
   currentTool: "draw",
-  currentSize: 64,
+  currentSize: 16,
   size: 128,
   tool: "draw",
   color: "#000000",
-  picture: Picture.empty(128, 128, "#f0f0f000"),
+  picture: Picture.empty(16, 16),
   done: [],
   doneAt: 0,
 };
@@ -45,7 +45,7 @@ function startPixelEditor({
   const app = new PixelEditor(state, {
     tools,
     controls,
-    dispatch(action: ActionType) {
+    dispatch(action: ActionObj) {
       // TODO: add 'clear' action reducer
       state = historyUpdateState(state, action);
       app.syncState(state);

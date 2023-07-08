@@ -7,7 +7,7 @@ class UndoButton implements UIComponent {
     this.dom = <HTMLButtonElement>elt(
       "button",
       {
-        onclick: () => dispatch({ undo: true }),
+        onclick: () => dispatch({ type: "undo" }),
         disabled: state.done.length == 0,
       },
       "⮪ Undo"

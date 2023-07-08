@@ -20,7 +20,7 @@ class PixelEditor implements UIComponent {
         const onMove = tool(pos, this.state, dispatch);
         if (onMove) return (pos: Position) => onMove(pos, this.state);
       },
-      state.size
+      state.currentSize
     );
 
     this.controls = Object.keys(controls).map(
@@ -39,7 +39,8 @@ class PixelEditor implements UIComponent {
 
   public syncState(state: EditorState) {
     this.state = state;
-    this.canvas.syncState(state.picture);
+
+    this.canvas.syncState(state.picture, state.currentSize);
     for (let ctrl of this.controls) {
       ctrl.syncState(state);
     }

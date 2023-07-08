@@ -10,7 +10,11 @@ class ToolButton implements UIComponent {
     this.dom = elt(
       "button",
       {
-        onclick: () => dispatch({ tool: this.dom.textContent }),
+        onclick: () =>
+          dispatch({
+            type: "select-tool",
+            payload: { tool: this.dom.textContent! },
+          }),
         className: this.name === state.currentTool ? "selected" : "",
       },
       name
