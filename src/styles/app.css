@@ -9,22 +9,16 @@
 }
 
 button {
-  border-radius: 8px;
+  padding: 6px 10px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 14px;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  border: 1px solid #5e5f60;
+  border-radius: 12px;
+
   cursor: pointer;
   transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 #app {
@@ -46,30 +40,55 @@ button:focus-visible {
 }
 
 .top-controls {
+  position: relative;
   width: var(--app-container-width);
   height: var(--top-controls-height);
-  border: 1px solid red;
+  left: var(--left-controls-width);
+  display: flex;
+  align-items: center;
+}
+
+.top-controls button {
+  margin-left: 15px;
+}
+
+.top-controls button.selected {
+  background-color: #12c9ff;
+  box-shadow: 0 2px #1183ca;
 }
 
 .left-controls,
 .right-controls {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: var(--left-controls-width);
-  border: 1px solid red;
 }
 
 .left-controls {
   float: left;
+  border: 1px solid #5e5f6023;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+.left-controls button {
+  width: 40px;
+  margin-top: 1rem;
 }
 
 .right-controls {
   float: right;
 }
 
+.right-controls button {
+  margin-left: 10px;
+  margin-bottom: 15px;
+}
+
 #canvas-container {
   float: left;
   position: relative;
+  left: 4px;
   width: 384px;
   height: 384px;
 }
@@ -81,10 +100,14 @@ button:focus-visible {
 
 .bottom-controls {
   position: absolute;
-  bottom: calc(0px - var(--bottom-controls-height));
+  bottom: calc(-10px - var(--bottom-controls-height));
   right: var(--right-controls-width);
   height: var(--bottom-controls-height);
   display: flex;
+}
+
+.bottom-controls button {
+  height: 40px;
 }
 
 @media (prefers-color-scheme: light) {

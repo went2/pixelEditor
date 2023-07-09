@@ -9,7 +9,6 @@ class ClearButton implements UIComponent {
       "button",
       {
         onclick: () => dispatch({ type: "clear" }),
-        disabled: state.done.length == 0,
       },
       "⎚ Clear"
     ) as HTMLButtonElement;

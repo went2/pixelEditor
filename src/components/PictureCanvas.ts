@@ -115,7 +115,7 @@ class PictureCanvas {
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT);
     ctx.beginPath();
-    ctx.lineWidth = 0.5;
+    ctx.lineWidth = 0.1;
     for (let x = startX; x <= endX; x += gridCellSize) {
       ctx.moveTo(x, startY);
       ctx.lineTo(x, endY);
@@ -126,7 +126,7 @@ class PictureCanvas {
       ctx.lineTo(endX, y);
     }
 
-    ctx.strokeStyle = "#00000035";
+    ctx.strokeStyle = "#231816";
     ctx.stroke();
     ctx.closePath();
   }
