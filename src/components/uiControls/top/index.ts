@@ -16,7 +16,7 @@ export default class SetSizeButtons implements UIComponent {
     this.dom = elt(
       "div",
       {
-        className: "top-btns-container",
+        className: "top-controls",
       },
       ...this.controls.map((btn) => btn.dom)
     );

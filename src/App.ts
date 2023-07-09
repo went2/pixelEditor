@@ -31,8 +31,8 @@ const baseTools = {
 
 // UI components
 const baseControls = {
-  LeftControls: ToolBar,
   TopControls: SetSizeButtons,
+  LeftControls: ToolBar,
   RightControls,
   BottomControls,
 };

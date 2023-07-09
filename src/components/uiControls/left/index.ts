@@ -17,7 +17,7 @@ class ToolBar implements UIComponent {
     this.dom = elt(
       "div",
       {
-        className: "toolbar",
+        className: "left-controls",
       },
       ...this.controls.map((control) => control.dom)
     );
