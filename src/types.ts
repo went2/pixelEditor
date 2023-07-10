@@ -15,7 +15,6 @@ declare var UIComponent: {
 };
 
 export interface EditorState {
-  size: 16 | 32 | 64 | 128;
   currentSize: 16 | 32 | 64 | 128; // 64 means 64 * 64
   currentTool: string; // TODO: maybe change to enum
   tool: string;
@@ -45,11 +44,12 @@ interface ActionPayload {
   picture?: Picture;
   clear?: boolean;
   currentSize?: number;
+  currentTool?: string;
   color?: string;
   tool?: string;
 }
 
 export interface ActionObj {
-  type: "set-size" | "select-tool" | "clear" | "undo" | "draw";
+  type: "set-size" | "select-tool" | "clear" | "undo" | "draw" | "select-color";
   payload?: ActionPayload;
 }

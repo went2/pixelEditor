@@ -24,6 +24,13 @@ export function historyUpdateState(state: EditorState, action: ActionObj) {
       done: [state.picture, ...state.done],
       doneAt: Date.now(),
     });
+  } else if (action.type == "select-color") {
+    const newColor = action.payload!.color;
+    console.log("select-color", newColor);
+
+    return Object.assign({}, state, {
+      color: newColor,
+    });
   } else {
     return Object.assign({}, state, action.payload);
   }

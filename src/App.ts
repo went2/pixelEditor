@@ -14,7 +14,6 @@ import { historyUpdateState } from "./models/reducer";
 const initialState: EditorState = {
   currentTool: "draw",
   currentSize: 16,
-  size: 128,
   tool: "draw",
   color: "#000000",
   picture: Picture.empty(16, 16),
