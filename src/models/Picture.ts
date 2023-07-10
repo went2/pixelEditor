@@ -1,4 +1,7 @@
-// model for a frame of canvas
+// Model for a frame of canvas
+// The width is logical, eg. 16 X 16, not actual width of canvas element, which
+// in app is hard-coded 384px
+// When export canvas to image, the width should be used as actual width of the exported image.
 class Picture {
   public width: number;
   public height: number;

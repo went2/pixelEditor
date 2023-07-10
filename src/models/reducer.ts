@@ -1,7 +1,7 @@
 import { EditorState, ActionObj } from "../types";
 import Picture from "./picture";
 
-export function historyUpdateState(state: EditorState, action: ActionObj) {
+export function reducer(state: EditorState, action: ActionObj) {
   if (action.type == "undo") {
     if (state.done.length == 0) return state;
     return Object.assign({}, state, {

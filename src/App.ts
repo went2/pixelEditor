@@ -9,7 +9,7 @@ import { draw, fill, rectangle, pick } from "./utils/drawHelpers";
 
 import { EditorState, ActionObj } from "./types";
 import Picture from "./models/picture";
-import { historyUpdateState } from "./models/reducer";
+import { reducer } from "./models/reducer";
 
 const initialState: EditorState = {
   currentTool: "draw",
@@ -44,7 +44,7 @@ function startPixelEditor({
     tools,
     controls,
     dispatch(action: ActionObj) {
-      state = historyUpdateState(state, action);
+      state = reducer(state, action);
       app.syncState(state);
     },
   });
