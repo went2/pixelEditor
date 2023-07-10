@@ -45,7 +45,7 @@ export function draw(
   function drawPixel({ x, y }: Position, state: EditorState) {
     const drawn = { x, y, color: state.color };
     dispatch({
-      type: "draw",
+      type: "default",
       payload: {
         picture: state.picture.draw([drawn]),
       },
@@ -66,7 +66,7 @@ const around = [
 export function fill(
   { x, y }: Position,
   state: EditorState,
-  dispatch: (...args: any[]) => void
+  dispatch: (action: ActionObj) => void
 ) {
   let targetColor = state.picture.getPixel(x, y);
   let drawn = [{ x, y, color: state.color }];
@@ -86,21 +86,34 @@ export function fill(
       }
     }
   }
-  dispatch({ picture: state.picture.draw(drawn) });
+  const action: ActionObj = {
+    type: "draw",
+    payload: {
+      picture: state.picture.draw(drawn),
+    },
+  };
+  console.log("dispatch fill action, current tool", state.currentTool);
+  dispatch(action);
 }
 
 export function pick(
   pos: Position,
   state: EditorState,
-  dispatch: (...args: any[]) => void
+  dispatch: (action: ActionObj) => void
 ) {
-  dispatch({ color: state.picture.getPixel(pos.x, pos.y) });
+  const action: ActionObj = {
+    type: "default",
+    payload: {
+      color: state.picture.getPixel(pos.x, pos.y),
+    },
+  };
+  dispatch(action);
 }
 
 export function rectangle(
   start: Position,
   state: EditorState,
-  dispatch: (...args: any[]) => void
+  dispatch: (action: ActionObj) => void
 ) {
   function drawRectangle(pos: Position) {
     let xStart = Math.min(start.x, pos.x);
@@ -113,7 +126,13 @@ export function rectangle(
         drawn.push({ x, y, color: state.color });
       }
     }
-    dispatch({ picture: state.picture.draw(drawn) });
+    const action: ActionObj = {
+      type: "default",
+      payload: {
+        picture: state.picture.draw(drawn),
+      },
+    };
+    dispatch(action);
   }
   drawRectangle(start);
   return drawRectangle;

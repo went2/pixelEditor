@@ -11,7 +11,7 @@ class ToolButton implements UIComponent {
     this.dom = elt("img", {
       onclick: () =>
         dispatch({
-          type: "select-tool",
+          type: "default",
           payload: { currentTool: this.dom.alt! },
         }),
       src:

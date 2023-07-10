@@ -26,12 +26,13 @@ export function historyUpdateState(state: EditorState, action: ActionObj) {
     });
   } else if (action.type == "select-color") {
     const newColor = action.payload!.color;
-    console.log("select-color", newColor);
-
     return Object.assign({}, state, {
       color: newColor,
     });
+  } else if (action.type == "default") {
+    return Object.assign({}, state, action.payload);
   } else {
+    console.log("untyped action", action);
     return Object.assign({}, state, action.payload);
   }
 }

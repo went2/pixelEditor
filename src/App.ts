@@ -13,10 +13,9 @@ import { historyUpdateState } from "./models/reducer";
 
 const initialState: EditorState = {
   currentTool: "draw",
-  currentSize: 16,
-  tool: "draw",
+  currentSize: 32,
   color: "#000000",
-  picture: Picture.empty(16, 16),
+  picture: Picture.empty(32, 32),
   done: [],
   doneAt: 0,
 };
@@ -45,7 +44,6 @@ function startPixelEditor({
     tools,
     controls,
     dispatch(action: ActionObj) {
-      // TODO: add 'clear' action reducer
       state = historyUpdateState(state, action);
       app.syncState(state);
     },

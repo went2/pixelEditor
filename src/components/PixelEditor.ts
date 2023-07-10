@@ -16,7 +16,7 @@ class PixelEditor implements UIComponent {
     this.canvas = new PictureCanvas(
       state.picture,
       (pos: Position) => {
-        const tool = tools[this.state.tool];
+        const tool = tools[this.state.currentTool];
         const onMove = tool(pos, this.state, dispatch);
         if (onMove) return (pos: Position) => onMove(pos, this.state);
       },
