@@ -2,6 +2,8 @@
 
 A pixel editor allows you to edit pixel icon and export.
 
+demo: [pixel-me](https://pixel-me.netlify.app/)
+
 The original idea and code structure is bought from [Eloquent JavaScript Chapter 19](https://eloquentjavascript.net/19_paint.html).
 
 I converted the code into TypeScript and expanded somehow in order to explore how to draw pixel in HTML canvas and how to manage states in vanilla way.
