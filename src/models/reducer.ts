@@ -25,6 +25,7 @@ export function reducer(state: EditorState, action: ActionObj) {
       doneAt: Date.now(),
     });
   } else if (action.type == "select-color") {
+    // console.log("select color", action);
     const newColor = action.payload!.color;
     return Object.assign({}, state, {
       color: newColor,

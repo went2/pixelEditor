@@ -18,7 +18,10 @@ class SaveButton implements UIComponent {
     );
   }
   save() {
-    let canvas = <HTMLCanvasElement>elt("canvas");
+    let canvas = <HTMLCanvasElement>elt("canvas", {
+      width: this.picture.width,
+      height: this.picture.height,
+    });
     drawPicture(this.picture, canvas, 1);
     let link = elt("a", {
       href: canvas.toDataURL(),
