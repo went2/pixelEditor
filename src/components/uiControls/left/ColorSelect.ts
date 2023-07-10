@@ -1,5 +1,5 @@
 import elt from "@/utils/createElement";
-import { UIComponent, EditorState, EditorConfig, ActionObj } from "@/types";
+import { UIComponent, EditorState, EditorConfig } from "@/types";
 
 class ColorSelect implements UIComponent {
   public input: HTMLInputElement;

@@ -1,4 +1,4 @@
-import { EditorState, UIComponent, EditorConfig } from "@/types";
+import { EditorState, UIComponent } from "@/types";
 import elt from "@/utils/createElement";
 import SaveButton from "./SaveButton";
 
@@ -6,7 +6,7 @@ class BottomControls implements UIComponent {
   public dom: HTMLElement;
   private controls: UIComponent[];
 
-  constructor(state: EditorState, config: EditorConfig) {
+  constructor(state: EditorState) {
     this.controls = [new SaveButton(state)];
 
     this.dom = elt(

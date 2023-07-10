@@ -4,7 +4,7 @@ import elt from "@/utils/createElement";
 class ClearButton implements UIComponent {
   public dom: HTMLButtonElement;
 
-  constructor(state: EditorState, { dispatch }: EditorConfig) {
+  constructor(_: EditorState, { dispatch }: EditorConfig) {
     this.dom = elt(
       "button",
       {

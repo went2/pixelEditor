@@ -1,4 +1,3 @@
-import Picture from "@/models/picture";
 import { ActionObj, EditorConfig, EditorState, UIComponent } from "@/types";
 import elt from "@/utils/createElement";
 
