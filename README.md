@@ -13,6 +13,31 @@ It turns out the way to manage states in vanilla JavaScript(TypeScript) is quite
 The core elements of the way consists of: 
 
 1. A state object of the whole App
-2. A dispatch function passed down to each component to instruct it dispatch actions instead of handle events by itself.
+2. State object and dispatch function are passed down to each component. When component's state changes, it dispatches actions instead of handle events by itself. Eg.
+
+```ts
+class UndoButton implements UIComponent {
+  public dom: HTMLButtonElement;
+  // 1. UndoButton is initialized with global state and dispatch function
+  constructor(state: EditorState, { dispatch }: EditorConfig) {
+    this.dom = <HTMLButtonElement>elt(
+      "button",
+      {
+        // 2. It dispatches action instead of handle click event itself when clicked.
+        // So the global reducer handles "undo" action and generates a new state
+        onclick: () => dispatch({ type: "undo" }),
+        disabled: state.done.length == 0,
+      },
+      "⮪ Undo"
+    );
+  }
+  // 3. The top App component will call every component's syncState with latest state.
+  // Then each component updates its own state
+  syncState(state: EditorState) {
+    this.dom.disabled = state.done.length == 0;
+  }
+}
+```
+
 3. A reducer function(can be splitted into several) to caculate and return the newest state object based on the current object and action object.
 4. App component notifys every component to sync their state each time the reducer returns the newest state.
